@@ -1,19 +1,23 @@
 {
-  "name": "example-composition-api-minimal",
+  "name": "example-composition-api-advanced",
   "version": "1.0.0",
   "private": true,
-  "dependencies": {
-    "@vue/composition-api": "latest",
-    "nuxt": "latest"
-  },
   "scripts": {
-    "dev": "nuxt",
-    "build": "nuxt build",
-    "start": "nuxt start",
-    "generate": "nuxt generate",
+    "dev": "nodemon server/index.ts",
+    "build": "nuxt-ts build",
+    "start": "cross-env NODE_ENV=production ts-node --project 'server/tsconfig.json' server/index.ts",
+    "generate": "nuxt-ts generate",
     "post-update": "yarn upgrade --latest"
   },
+  "dependencies": {
+    "@nuxt/typescript-runtime": "latest",
+    "@vue/composition-api": "latest",
+    "cross-env": "latest",
+    "express": "latest",
+    "nuxt-edge": "latest"
+  },
   "devDependencies": {
-    "@nuxt/typescript-build": "latest"
+    "@nuxt/typescript-build": "latest",
+    "nodemon": "latest"
   }
 }
