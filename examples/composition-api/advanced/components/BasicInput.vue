@@ -4,7 +4,7 @@ import {
   PropType
 } from '@vue/composition-api'
 
-import { setupInput } from '@/compositions/useInput'
+import { useInput } from '@/compositions/input/useInput'
 
 export default defineComponent({
   name: 'BasicInput',
@@ -16,7 +16,7 @@ export default defineComponent({
     }
   },
   setup (_, { emit }) {
-    const { inputValue, inputRef } = setupInput(emit)
+    const { inputValue, inputRef } = useInput(emit)
 
     return { inputValue, inputRef }
   }
@@ -26,11 +26,14 @@ export default defineComponent({
 <template>
   <div class="input-container">
     <label :for="id">
-      <slot />
+      <span class="input-container__label">
+        <slot />
+      </span>
       <input
         :id="id"
         ref="inputRef"
         v-model="inputValue"
+        class="input-container__input"
         v-bind="$attrs"
         v-on="$listeners"
       >
@@ -42,20 +45,25 @@ export default defineComponent({
 input{
   -webkit-appearance: none;
   appearance: none;
-
-  width: 100%;
-  border: 1px solid #333;
-  margin: 0;
-
-  font-family: inherit;
+  background-color: #EFEFEF;
+  border: 0.3em solid #333333;
   font-size: 90%;
-
-  box-sizing: border-box;
+  font-weight: bold;
+  margin-top: 0.5em;
+  padding: 0.6em;
 }
 
 .input-container {
-  width: 200px;
-  margin: 0 auto;
-  display: block;
+  display: flex;
+  flex-direction: column;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  margin-top: 0.8em;
+}
+
+.input-container__label {
+  color: #fcfcfc;
+  padding: 0em 0.5em;
+  text-align: left;
 }
 </style>

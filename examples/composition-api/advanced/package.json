@@ -1,5 +1,6 @@
 {
   "name": "example-composition-api-advanced",
+  "description": "An advanced example app for Nuxt TypeScript using the Vue Composition API",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -13,11 +14,11 @@
     "@nuxt/typescript-runtime": "latest",
     "@vue/composition-api": "latest",
     "cross-env": "latest",
-    "express": "latest",
     "nuxt-edge": "latest"
   },
   "devDependencies": {
     "@nuxt/typescript-build": "latest",
+    "express": "latest",
     "nodemon": "latest"
   }
 }

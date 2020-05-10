@@ -4,8 +4,8 @@ import {
   PropType
 } from '@vue/composition-api'
 
-import { setupInput } from '@/compositions/useInput'
-import { setupValidation } from '@/compositions/useValidation'
+import { useInput } from '@/compositions/input/useInput'
+import { useValidation } from '@/compositions/input/useValidation'
 
 export default defineComponent({
   name: 'InputWithValidation',
@@ -21,12 +21,12 @@ export default defineComponent({
     }
   },
   setup (props, { emit }) {
-    const { inputValue, inputRef } = setupInput(emit)
+    const { inputValue, inputRef } = useInput(emit)
 
-    const { errorRef, valid } = setupValidation({
-      inputValue,
+    const { errorRef, valid } = useValidation({
+      name: props.name,
       inputRef,
-      props,
+      inputValue,
       emit
     })
 
@@ -36,79 +36,74 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="input-container">
-    <label :for="id">
+  <label class="input-container" :for="id">
+    <span class="input-container__label">
       <slot />
-      <input
-        :id="id"
-        ref="inputRef"
-        v-model="inputValue"
-        v-bind="$attrs"
-        v-on="$listeners"
-      >
-    </label>
-    <p ref="errorRef" class="error" />
-  </div>
+    </span>
+    <input
+      :id="id"
+      ref="inputRef"
+      v-model="inputValue"
+      class="input-container__input"
+      v-bind="$attrs"
+      v-on="$listeners"
+    >
+    <p ref="errorRef" class="input-container__error" />
+  </label>
 </template>
 
 <style scoped>
-p * {
-  display: block;
-}
-
-input{
+input {
   -webkit-appearance: none;
   appearance: none;
-
-  width: 100%;
-  border: 2px solid #333;
   background-color: #EFEFEF;
-  margin: 0;
-
-  font-family: inherit;
+  border: 0.3em solid #333333;
   font-size: 90%;
-
-  box-sizing: border-box;
+  font-weight: bold;
+  margin-top: 0.5em;
+  padding: 0.6em;
 }
 
-input:valid{
-  border-color: #080;
+input:valid {
+  border-color: #008800;
+}
+
+input:valid:focus {
   background-color: #E1FFE5;
 }
 
-input:focus:invalid {
-  outline: none;
+input:invalid {
+  border-color: #8D3530;
 }
 
-input:invalid{
-  border-color: #900;
-  background-color: #FFAFAF;
-}
-
-input:focus:invalid {
-  outline: none;
+input:invalid:focus {
+  background-color: #FFD6D6;
 }
 
 .input-container {
-  width: 200px;
-  margin: 0 auto;
-  display: block;
+  display: flex;
+  flex-direction: column;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  margin-top: 0.8em;
+  padding: 0 0.2em;
 }
 
-.error {
-  width: 100%;
-  margin-top: 0;
-  padding: 0;
-
-  font-size: 80%;
-  color: white;
-  background-color: #900;
-  border-radius: 0 0 5px 5px;
-
-  box-sizing: border-box;
+.input-container__label {
+  color: #fcfcfc;
+  padding: 0em 0.5em;
+  text-align: left;
 }
 
-.error.active {
-  padding: 0.3em;
+.input-container__error {
+  background-color: #8d3530;
+  border-radius: 0em 0em 0.4em 0.4em;
+  color: #f5f5f5;
+  font-size: 0.8em;
+  text-align: left;
+}
+
+.input-container__error.active {
+  padding: 0.5em 1em;
 }
 </style>
