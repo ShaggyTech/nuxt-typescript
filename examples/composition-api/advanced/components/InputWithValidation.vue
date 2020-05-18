@@ -24,10 +24,10 @@ export default defineComponent({
     const { inputValue, inputRef } = useInput(emit)
 
     const { errorRef, valid } = useValidation({
-      name: props.name,
+      emit,
       inputRef,
       inputValue,
-      emit
+      name: props.name
     })
 
     return { inputValue, inputRef, errorRef, valid }
@@ -85,8 +85,8 @@ input:invalid:focus {
   flex-direction: column;
   font-family: Verdana, Arial, Helvetica, sans-serif;
   font-weight: bold;
-  margin-top: 0.8em;
-  padding: 0 0.2em;
+  margin: 0.8em auto;
+  width: clamp(85%, 500px, 95%)
 }
 
 .input-container__label {

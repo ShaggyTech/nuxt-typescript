@@ -23,40 +23,37 @@ import {
  */
 export const useValidation = (
   input: {
-    name: string,
-    inputValue: Ref<any>,
+    emit: (event: string, ...args: any[]) => void,
     inputRef: Ref<HTMLInputElement | null>,
-    emit: (event: string, ...args: any[]) => void
+    inputValue: Ref<any>,
+    name: string
   }
 ): InputValidationRefs => {
   const { errorRef, valid } = getValidationRefs()
-
   // Watch for input changes and update error messages if validation fails
   watch(input.inputValue, (): void => {
-    if (input.inputRef.value !== null) {
-      // Reset errorRef textContent and className to initial values
-      resetErrorRef(errorRef)
+    // Reset errorRef textContent and className to initial values
+    resetErrorRef(errorRef)
 
-      // True if input value passes all validations
-      const isValid = checkValidity(input.inputRef)
+    // True if input value passes all validations
+    const isValid = checkValidity(input.inputRef)
 
-      // Update valid ref
-      valid.value = isValid
+    // Update valid ref
+    valid.value = isValid
 
-      if (!isValid && errorRef.value) {
-        // Show the user custom messages about why validation failed
-        showValidationError(
-          input.name,
-          input.inputRef,
-          errorRef
-        )
-      }
-
-      // Emit new `valid` value so it can be used in the parent.
-      // example: <input :valid.sync="someParentValue" />
-      input.emit('update:valid', valid.value)
+    if (!isValid && errorRef.value) {
+      // Show the user custom messages about why validation failed
+      showValidationError(
+        input.name,
+        input.inputRef,
+        errorRef
+      )
     }
-  })
+
+    // Emit new `valid` value so it can be used in the parent.
+    // example: <input :valid.sync="someParentValue" />
+    input.emit('update:valid', valid.value)
+  }, { lazy: false })
 
   // Return refs for use in components
   return { errorRef, valid }

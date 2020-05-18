@@ -38,15 +38,8 @@ export const showValidationError = (
         ${fieldName} must be at least ${inputElement?.minLength} characters,
         you entered ${inputElement?.value.length}.
       `
-    } else if (validity.tooLong) {
-      // If the field value is too long
-      errorElement.textContent = `
-        ${fieldName} must be less than ${inputElement?.maxLength} characters,
-        you entered ${inputElement?.value.length}.
-      `
     }
-
-    // Set the styling appropriately
+    // Set a class so the component can be styled
     errorElement.classList.add('active')
   }
 }

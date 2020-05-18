@@ -8,22 +8,6 @@ import {
 import InputWithValidation from '@/components/InputWithValidation.vue'
 import { fieldsetFactory, useForm, FormFieldMeta } from '@/compositions/form'
 
-const EMAIL_LABEL = 'Email Address'
-const PASSWORD_LABEL = 'Password'
-
-const EMAIL: FormFieldMeta = {
-  name: 'email',
-  labelText: EMAIL_LABEL,
-  placeholder: 'Account Email',
-  type: 'email'
-}
-const PASSWORD: FormFieldMeta = {
-  name: 'password',
-  labelText: PASSWORD_LABEL,
-  placeholder: 'Account Password',
-  type: 'password'
-}
-
 export default defineComponent({
   name: 'LoginForm',
   components: {
@@ -34,24 +18,27 @@ export default defineComponent({
       required: false,
       type: String as PropType<string>,
       default: ''
+    },
+    fieldset: {
+      required: true,
+      type: Array as PropType<FormFieldMeta[]>
     }
   },
-  setup () {
-    const { email, password } = fieldsetFactory([EMAIL, PASSWORD])
-    const { form } = useForm({ email, password })
+  setup (props, { emit }) {
+    const fields = fieldsetFactory([...props.fieldset])
+    const { form } = useForm(fields)
 
     const submit = () => {
-      console.log('FORM', form)
-      console.log('valid form', form.valid)
-      console.log('email', email)
-      console.log('form email', form.fields.email)
+      if (form.valid) {
+        emit('update:form', form)
+        emit('submit', form)
+      }
     }
 
     return {
-      email,
-      password,
       form,
-      submit
+      submit,
+      fields
     }
   }
 })
@@ -59,37 +46,25 @@ export default defineComponent({
 
 <template>
   <form
-    class="login-form"
     @submit.prevent="submit"
   >
     <fieldset>
       <legend v-if="title">
         {{ title }}
       </legend>
+
       <input-with-validation
-        id="EmailInput"
-        ref="emailRef"
-        v-model="email.input"
-        :valid.sync="email.valid"
-        name="Email"
-        type="email"
-        required
-        placeholder="Account Email"
+        v-for="(field, name) in fields"
+        :id="name + 'InputField' + Math.floor((Math.random() * (1 - 1000) + 1))"
+        :key="name"
+        v-model="fields[name].input"
+        :valid.sync="fields[name].valid"
+        :name="name"
+        :type="fields[name].type"
+        :placeholder="fields[name].placeholder"
+        v-bind="fields[name].rules"
       >
-        {{ email.labelText }}
-      </input-with-validation>
-      <input-with-validation
-        id="PasswordInput"
-        ref="passwordRef"
-        v-model="password.input"
-        :valid.sync="password.valid"
-        name="Password"
-        type="password"
-        required
-        minlength="4"
-        placeholder="Account Password"
-      >
-        {{ password.labelText }}
+        {{ fields[name].labelText }}
       </input-with-validation>
     </fieldset>
 
@@ -104,12 +79,12 @@ form {
   align-items: center;
   background-color: #085d97;
   border: 0.6em double #007acc;
-  border-radius: 0.2em;
+  border-radius: 1.2em;
   display: flex;
   flex-direction: column;
   font-family: "Arial Black", Gadget, sans-serif;
+  height: 0%;
   padding: 1em 0;
-  width: clamp(33%, 500px, 100%);
 }
 
 fieldset {
@@ -117,7 +92,7 @@ fieldset {
   border: 0.2em solid #375975;
   padding-bottom: 0.8em;
   justify-content: center;
-  width: clamp(66%, 400px, 95%);
+  width: clamp(min(500px, 0.01%), 700px, 90%);
 }
 
 legend {
@@ -127,7 +102,7 @@ legend {
   font-size: 1.6em;
   margin: 0.5em auto;
   padding: 0.3em 1em;
-  width: clamp(66%, 300px, 90%);
+  width: clamp(66%, 450px, 90%);
 }
 
 legend::after {
@@ -142,6 +117,7 @@ legend::after {
 
 button {
   background-color: #008800;
+  background-position: center;
   border: 0.1em solid #32632f;
   border-radius: 0.3em;
   color: #ffffff;
@@ -149,9 +125,8 @@ button {
   font-size: 1.1em;
   margin: 0.5em auto;
   padding: 0.4em 0;
-  width: clamp(50%, 250px, 90%);
-  background-position: center;
   transition: background 0.8s;
+  width: clamp(min(500px, 0.01%), 450px, 90%);
 }
 
 button:focus {
@@ -169,9 +144,9 @@ button:not(:disabled):hover {
 }
 
 button:disabled {
+  background-color: #005950;
   border: none;
   box-shadow: none;
-  background-color: #005950;
   color: #666666;
 }
 </style>

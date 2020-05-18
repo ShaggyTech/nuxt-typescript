@@ -42,7 +42,7 @@ export default defineComponent({
 </template>
 
 <style scoped>
-input{
+input {
   -webkit-appearance: none;
   appearance: none;
   background-color: #EFEFEF;
@@ -58,7 +58,8 @@ input{
   flex-direction: column;
   font-family: Verdana, Arial, Helvetica, sans-serif;
   font-weight: bold;
-  margin-top: 0.8em;
+  margin: 0.8em auto;
+  width: clamp(85%, 500px, 95%)
 }
 
 .input-container__label {

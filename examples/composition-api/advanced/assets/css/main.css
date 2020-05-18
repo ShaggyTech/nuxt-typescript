@@ -6,10 +6,14 @@
   padding: 0;
 }
 
+html, body {
+  min-height: 100%;
+}
+
 body {
   box-sizing: border-box;
-  font-family: 100% 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  height: 100%;
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  min-height: 100vh;
   left: 0;
   margin: 0;
   padding: 0;

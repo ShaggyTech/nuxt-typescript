@@ -6,7 +6,7 @@ const isDev: boolean = process.env.NODE_ENV !== 'production'
 
 const config: Configuration = {
   head: {
-    titleTemplate: '%s - ' + (name || ''),
+    titleTemplate: '%s - ',
     title: name || '',
     meta: [
       { charset: 'utf-8' },
