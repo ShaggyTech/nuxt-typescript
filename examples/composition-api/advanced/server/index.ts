@@ -1,6 +1,6 @@
 export { NuxtServer } from './NuxtServer'
 export * as startDevServer from './server-dev'
-export * as startProdServer from './sever-prod'
+export * as startProdServer from './server-prod'
 
 export const PORT = 3000
 
