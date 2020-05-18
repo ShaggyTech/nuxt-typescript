@@ -79,7 +79,7 @@ form {
   align-items: center;
   background-color: #085d97;
   border: 0.6em double #007acc;
-  border-radius: 1.2em;
+  border-radius: 0.2em;
   display: flex;
   flex-direction: column;
   font-family: "Arial Black", Gadget, sans-serif;

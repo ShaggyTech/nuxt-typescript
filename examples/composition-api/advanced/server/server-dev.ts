@@ -21,7 +21,7 @@ const watchPaths = `./+(${folderNames})/**/*.{js,ts,jsx,vue}`
 const server = new NuxtServer()
 
 consola.start({
-  message: 'Starting Nuxt HMR dev server...',
+  message: `Starting Nuxt HMR dev server on http://${server.host}:${server.port}`,
   badge: true
 })
 
@@ -30,5 +30,5 @@ server.start()
 chokidar.watch([watchPaths], {
   ignoreInitial: true
 }).on('change', () => {
-  server.buildNuxtDev()
+  server.buildNuxt()
 })

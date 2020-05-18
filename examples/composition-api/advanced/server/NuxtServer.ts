@@ -14,42 +14,37 @@ export class NuxtServer {
   started: boolean;
 
   constructor (port?: number) {
-    const nuxt_ = new Nuxt(config)
-
     this.app = express()
-    this.nuxt = nuxt_
+    this.nuxt = new Nuxt(config)
     this.builder = new Builder(this.nuxt)
+
     this.host = this.nuxt.options.server.host
     this.port = port || PORT
+
     this.started = false
   }
 
-  async buildNuxtDev () {
+  async buildNuxt () {
     await this.builder.build()
   }
 
   async start () {
     await this.nuxt.ready()
 
-    // Build only in dev mode
-    if (config.dev) {
-      await this.buildNuxtDev()
+    // Build once in production and every time in dev mode if this.start() is called
+    if (!this.started || config.dev) {
+      await this.buildNuxt()
     }
 
-    // Only start the server one time
+    // Start the server one time only
     if (!this.started) {
       // Give nuxt middleware to express
       this.app.use(this.nuxt.render)
-
       // Listen to the server
       this.app.listen(this.port, this.host)
-      consola.ready({
-        message: `Server listening on http://${this.host}:${this.port}`,
-        badge: true
-      })
-
+      // flag that the server is already running
       this.started = true
-    } else {
+
       consola.ready({
         message: `Server listening on http://${this.host}:${this.port}`,
         badge: true
