@@ -4,11 +4,12 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "nodemon server/index.ts",
+    "dev": " ts-node --project server/tsconfig.json server/server-dev.ts",
     "build": "nuxt-ts build",
-    "start": "cross-env NODE_ENV=production ts-node --project 'server/tsconfig.json' server/index.ts",
+    "start": "cross-env NODE_ENV=production ts-node --project 'server/tsconfig.json' server/server-prod.ts",
     "generate": "nuxt-ts generate",
-    "post-update": "yarn upgrade --latest"
+    "post-update": "yarn upgrade --latest",
+    "build-nuxt-dev": "node -e \"require('./server/index.ts').buildNuxtDev()\""
   },
   "dependencies": {
     "@nuxt/typescript-runtime": "latest",
@@ -18,7 +19,7 @@
   },
   "devDependencies": {
     "@nuxt/typescript-build": "latest",
-    "express": "latest",
-    "nodemon": "latest"
+    "chokidar": "latest",
+    "express": "latest"
   }
 }
