@@ -8,8 +8,7 @@
     "build": "nuxt-ts build",
     "start": "cross-env NODE_ENV=production ts-node --project 'server/tsconfig.json' server/server-prod.ts",
     "generate": "nuxt-ts generate",
-    "post-update": "yarn upgrade --latest",
-    "build-nuxt-dev": "node -e \"require('./server/index.ts').buildNuxtDev()\""
+    "post-update": "yarn upgrade --latest"
   },
   "dependencies": {
     "@nuxt/typescript-runtime": "latest",
