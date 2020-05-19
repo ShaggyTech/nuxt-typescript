@@ -7,7 +7,6 @@ import { PORT } from './'
 
 export class NuxtServer {
   app: any;
-  builder: any;
   host: any;
   nuxt: any;
   port: number;
@@ -16,7 +15,6 @@ export class NuxtServer {
   constructor (port?: number) {
     this.app = express()
     this.nuxt = new Nuxt(config)
-    this.builder = new Builder(this.nuxt)
 
     this.host = this.nuxt.options.server.host
     this.port = port || PORT
@@ -25,7 +23,8 @@ export class NuxtServer {
   }
 
   async buildNuxt () {
-    await this.builder.build()
+    const builder = new Builder(this.nuxt)
+    await builder.build()
   }
 
   async start () {
