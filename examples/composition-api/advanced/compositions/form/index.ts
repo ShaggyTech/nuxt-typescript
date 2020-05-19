@@ -13,7 +13,7 @@ export type FormField = {
   input: string | null;
   labelText: string | '';
   placeholder: string | '';
-  rules: Record<string, boolean | string | number>
+  rules: Record<string, boolean | string | number>;
   type: string | 'text';
   valid: boolean;
 }

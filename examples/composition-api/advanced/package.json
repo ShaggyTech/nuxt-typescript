@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": " ts-node --project server/tsconfig.json server/server-dev.ts",
+    "dev": "ts-node --project server/tsconfig.json server/server-dev.ts",
     "build": "nuxt-ts build",
     "start": "cross-env NODE_ENV=production ts-node --project 'server/tsconfig.json' server/server-prod.ts",
     "generate": "nuxt-ts generate",
