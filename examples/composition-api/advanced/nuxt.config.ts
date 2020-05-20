@@ -5,6 +5,7 @@ import { name, description } from './package.json'
 const isDev: boolean = process.env.NODE_ENV !== 'production'
 
 const config: Configuration = {
+  dev: isDev,
   head: {
     titleTemplate: '%s - ',
     title: name || '',
@@ -23,14 +24,16 @@ const config: Configuration = {
     '@/assets/css/main.css'
   ],
   buildModules: ['@nuxt/typescript-build'],
-  dev: isDev,
   plugins: ['@/plugins/composition-api.ts']
   // See https://typescript.nuxtjs.org/guide/setup.html#type-check
-  // typescript: {
-  //   typeCheck: {
-  //     eslint: true
-  //   }
-  // }
+  // Uncomment below to use it
+  /***************
+  typescript: {
+    typeCheck: {
+    eslint: true
+    }
+  }
+  ***************/
 }
 
 export default config

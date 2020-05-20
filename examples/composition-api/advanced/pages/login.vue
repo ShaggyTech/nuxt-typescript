@@ -2,7 +2,10 @@
 import { defineComponent } from '@vue/composition-api'
 /* Components */
 import FormWithValidation from '@/components/form/FormWithValidation.vue'
+/* Form fieldset */
 import { fieldsetLogin as fieldset } from '@/components/form/presets/fieldsets'
+/* Types */
+import { ReactiveForm } from '@/compositions/form'
 
 export default defineComponent({
   name: 'LoginPage',
@@ -11,7 +14,10 @@ export default defineComponent({
     FormWithValidation
   },
   setup () {
-    return { fieldset }
+    const submitForm = (form: ReactiveForm) => {
+      console.log('Login Form Submitted', { ...form })
+    }
+    return { fieldset, submitForm }
   }
 })
 </script>
@@ -21,6 +27,7 @@ export default defineComponent({
     id="LoginForm"
     title="Login to your Account"
     :fieldset="fieldset"
+    @submit="submitForm"
   />
 </template>
 

@@ -2,7 +2,9 @@
 import { defineComponent, ref } from '@vue/composition-api'
 /* Components */
 import FormWithValidation from '@/components/form/FormWithValidation.vue'
+/* Form fieldsets */
 import { fieldsetLogin, fieldsetRegister } from '@/components/form/presets/fieldsets'
+/* Types */
 import { ReactiveForm } from '@/compositions/form'
 
 const LOGIN_TEXT = 'No Account? Click here to register.'

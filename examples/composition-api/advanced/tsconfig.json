@@ -9,22 +9,15 @@
       "esnext.asynciterable",
       "dom"
     ],
-    "esModuleInterop": true,
-    "allowJs": true,
-    "sourceMap": true,
+    "baseUrl": ".",
     "strict": true,
     "noEmit": true,
-    "baseUrl": ".",
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "allowJs": true,
     "paths": {
-      "~/*": [
-        "./*"
-      ],
-      "@/*": [
-        "./*"
-      ]
-    },
-    "types": [
-      "@nuxt/types"
-    ]
+      "~/*": ["./*"],
+      "@/*": ["./*"]
+    }
   }
 }
