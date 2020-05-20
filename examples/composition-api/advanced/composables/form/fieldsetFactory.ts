@@ -1,5 +1,5 @@
 import { reactive } from '@vue/composition-api'
-import { FormFieldMeta, FormField, FormFieldset } from '@/compositions/form'
+import { FormFieldMeta, FormField, FormFieldset } from '~/composables/form'
 
 export const fieldsetFactory = (fieldItems: FormFieldMeta[]): FormFieldset => {
   const fields: FormFieldset = Object.assign({})

@@ -6,7 +6,7 @@ import {
 
 /* Components */
 import InputWithValidation from '@/components/InputWithValidation.vue'
-import { fieldsetFactory, useForm, FormFieldMeta } from '@/compositions/form'
+import { fieldsetFactory, useForm, FormFieldMeta } from '@/composables/form'
 
 export default defineComponent({
   name: 'LoginForm',

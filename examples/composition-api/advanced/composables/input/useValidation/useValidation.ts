@@ -6,7 +6,7 @@ import {
   showValidationError,
   resetErrorRef,
   InputValidationRefs
-} from '@/compositions/input/useValidation'
+} from '~/composables/input/useValidation'
 
 /**
  * Component setup function to validate input values and show error messages

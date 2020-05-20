@@ -1,5 +1,5 @@
-export { fieldsetFactory } from '~/compositions/form/fieldsetFactory'
-export { useForm } from '~/compositions/form/useForm'
+export { fieldsetFactory } from '~/composables/form/fieldsetFactory'
+export { useForm } from '~/composables/form/useForm'
 
 export type FormFieldMeta = {
   name: string;

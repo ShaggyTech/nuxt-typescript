@@ -4,7 +4,7 @@ import {
   PropType
 } from '@vue/composition-api'
 
-import { useInput } from '@/compositions/input/useInput'
+import { useInput } from '@/composables/input/useInput'
 
 export default defineComponent({
   name: 'BasicInput',

@@ -5,7 +5,7 @@ import FormWithValidation from '@/components/form/FormWithValidation.vue'
 /* Form fieldsets */
 import { fieldsetLogin, fieldsetRegister } from '@/components/form/presets/fieldsets'
 /* Types */
-import { ReactiveForm } from '@/compositions/form'
+import { ReactiveForm } from '@/composables/form'
 
 const LOGIN_TEXT = 'No Account? Click here to register.'
 const REGISTER_TEXT = 'Already a member? Click here to login.'

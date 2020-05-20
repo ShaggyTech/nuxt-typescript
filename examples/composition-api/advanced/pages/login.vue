@@ -5,7 +5,7 @@ import FormWithValidation from '@/components/form/FormWithValidation.vue'
 /* Form fieldset */
 import { fieldsetLogin as fieldset } from '@/components/form/presets/fieldsets'
 /* Types */
-import { ReactiveForm } from '@/compositions/form'
+import { ReactiveForm } from '@/composables/form'
 
 export default defineComponent({
   name: 'LoginPage',

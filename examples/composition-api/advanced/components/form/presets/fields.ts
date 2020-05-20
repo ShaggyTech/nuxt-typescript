@@ -1,4 +1,4 @@
-import { FormFieldMeta } from '@/compositions/form'
+import { FormFieldMeta } from '~/composables/form'
 
 export const USERNAME: FormFieldMeta = {
   name: 'UserName',

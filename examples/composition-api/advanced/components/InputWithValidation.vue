@@ -4,8 +4,8 @@ import {
   PropType
 } from '@vue/composition-api'
 
-import { useInput } from '@/compositions/input/useInput'
-import { useValidation } from '@/compositions/input/useValidation'
+import { useInput } from '@/composables/input/useInput'
+import { useValidation } from '@/composables/input/useValidation'
 
 export default defineComponent({
   name: 'InputWithValidation',

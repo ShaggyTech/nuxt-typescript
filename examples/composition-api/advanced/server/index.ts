@@ -5,7 +5,7 @@ export const PORT = 3000
 export const WATCH_FOLDERS = `
   assets
   |components
-  |compositions
+  |composables
   |layouts
   |middleware
   |pages

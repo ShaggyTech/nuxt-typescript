@@ -1,5 +1,5 @@
 import { ref } from '@vue/composition-api'
-import { InputValidationRefs } from '~/compositions/input/useValidation'
+import { InputValidationRefs } from '~/composables/input/useValidation'
 
 /** Returns composition refs for use in the InputWithValidation component */
 export const getValidationRefs = (): InputValidationRefs => ({

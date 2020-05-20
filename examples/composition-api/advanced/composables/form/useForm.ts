@@ -1,5 +1,5 @@
 import { ref, reactive, watch } from '@vue/composition-api'
-import { FormFieldset, ReactiveForm, ReactiveFormFieldset } from '@/compositions/form'
+import { FormFieldset, ReactiveForm, ReactiveFormFieldset } from '~/composables/form'
 
 const mapFormFields = (fieldGroup: FormFieldset): ReactiveFormFieldset => {
   const tempFields: ReactiveFormFieldset = Object.assign({})

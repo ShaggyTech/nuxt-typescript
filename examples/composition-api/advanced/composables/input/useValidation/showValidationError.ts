@@ -1,5 +1,5 @@
 import { Ref } from '@vue/composition-api'
-import { resetErrorRef } from '@/compositions/input/useValidation'
+import { resetErrorRef } from '~/composables/input/useValidation'
 
 /**
  * Shows an error message if the input field fails HTML validation spec.
